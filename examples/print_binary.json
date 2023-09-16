@@ -1,0 +1,43 @@
+{
+  "name": "examples/print_binary.rinha",
+  "expression": {
+    "kind": "Print",
+    "value": {
+      "kind": "Binary",
+      "lhs": {
+        "kind": "Str",
+        "value": "Leonardo",
+        "location": {
+          "start": 6,
+          "end": 16,
+          "filename": "examples/print_binary.rinha"
+        }
+      },
+      "op": "Add",
+      "rhs": {
+        "kind": "Int",
+        "value": 666,
+        "location": {
+          "start": 19,
+          "end": 22,
+          "filename": "examples/print_binary.rinha"
+        }
+      },
+      "location": {
+        "start": 6,
+        "end": 22,
+        "filename": "examples/print_binary.rinha"
+      }
+    },
+    "location": {
+      "start": 0,
+      "end": 23,
+      "filename": "examples/print_binary.rinha"
+    }
+  },
+  "location": {
+    "start": 0,
+    "end": 23,
+    "filename": "examples/print_binary.rinha"
+  }
+}
