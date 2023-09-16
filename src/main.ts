@@ -1,39 +1,43 @@
 const fs = require('fs');
 
-interface Node {
-    kind: string;
-};
-
-interface SourceLocation extends Node {
+interface SourceLocation {
     start: number;
     end: number;
     filename: string;
 };
 
-interface Str extends Node {
-    value: string;
+interface ExpressionNode {
+    kind: string;
     location: SourceLocation;
 };
 
-interface Int extends Node {
+interface Str extends ExpressionNode {
+    value: string;
+};
+
+interface Int extends ExpressionNode {
     value: number;
-    location: SourceLocation;
+};
+
+interface Bool extends ExpressionNode {
+    value: boolean;
 }
 
-interface Print extends Node {
+interface Print extends ExpressionNode {
     value: Term;
 };
 
-interface Void extends Node {
+interface Void extends ExpressionNode {
     value: null;
 };
 
-type Types = Str | Int | Void | Print;
+type Types = Str | Int | Bool | Void | Print;
 
 enum TermKindEnum {
     Str = "Str",
     Print = "Print",
-    Int = "Int"
+    Int = "Int",
+    Bool = "Bool"
 };
 
 interface Term { [key: string]: any }
@@ -53,6 +57,8 @@ function evaluate(term: Term): Types {
             return struct<Str>(term);
         case TermKindEnum.Int:
             return struct<Int>(term);
+        case TermKindEnum.Bool:
+            return struct<Bool>(term);
         case TermKindEnum.Print:
             const { value, kind } = evaluate(term.value);
 
@@ -63,6 +69,11 @@ function evaluate(term: Term): Types {
 
             if (kind === TermKindEnum.Int) {
                 console.log(+value);
+                return;
+            }
+
+            if (kind === TermKindEnum.Bool) {
+                console.log(Boolean(value));
                 return;
             }
 
