@@ -23,7 +23,12 @@ type Print = {
     value: Term;
 };
 
-type Types = Str | Int | Print;
+type Void = {
+    kind: string;
+    value: null;
+};
+
+type Types = Str | Int | Void | Print;
 
 enum TermKindEnum {
     Str = "Str",
@@ -62,12 +67,14 @@ function evaluate(term: Term): Types {
             }
 
             return;
+        default:
+            return {} as Void;
     }
 
 }
 
 function main() {
-    const stdin = fs.readFileSync('./examples/print_int.json');
+    const stdin = fs.readFileSync('./examples/print_boolean.json');
     const program = JSON.parse(stdin.toString());
     console.log(evaluate(program.expression));
 }

@@ -1,0 +1,25 @@
+{
+  "name": "examples/print_boolean.rinha",
+  "expression": {
+    "kind": "Print",
+    "value": {
+      "kind": "Bool",
+      "value": true,
+      "location": {
+        "start": 6,
+        "end": 10,
+        "filename": "examples/print_boolean.rinha"
+      }
+    },
+    "location": {
+      "start": 0,
+      "end": 11,
+      "filename": "examples/print_boolean.rinha"
+    }
+  },
+  "location": {
+    "start": 0,
+    "end": 11,
+    "filename": "examples/print_boolean.rinha"
+  }
+}
