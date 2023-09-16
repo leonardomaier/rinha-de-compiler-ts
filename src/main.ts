@@ -1,30 +1,30 @@
 const fs = require('fs');
 
-type SourceLocation = {
+interface Node {
+    kind: string;
+};
+
+interface SourceLocation extends Node {
     start: number;
     end: number;
     filename: string;
 };
 
-type Str = {
-    kind: string;
+interface Str extends Node {
     value: string;
     location: SourceLocation;
 };
 
-type Int = {
-    kind: string;
+interface Int extends Node {
     value: number;
     location: SourceLocation;
 }
 
-type Print = {
-    kind: string;
+interface Print extends Node {
     value: Term;
 };
 
-type Void = {
-    kind: string;
+interface Void extends Node {
     value: null;
 };
 
@@ -43,12 +43,12 @@ function struct<T>(term: Term): T {
         value: term.value,
         kind: term.kind,
         location: term.location
-    } as T; 
+    } as T;
 }
 
 function evaluate(term: Term): Types {
 
-    switch(term.kind) {
+    switch (term.kind) {
         case TermKindEnum.Str:
             return struct<Str>(term);
         case TermKindEnum.Int:
